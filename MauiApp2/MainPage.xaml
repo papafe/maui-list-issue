@@ -7,23 +7,22 @@
     <ContentPage.BindingContext>
         <viewmodel:MainViewModel />
     </ContentPage.BindingContext>
-    <ListView
-            ItemsSource="{Binding Items}"
-            SelectionMode="None">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
+    <!--temporary solution-->
+    <ScrollView Grid.Row="1">
+        <StackLayout  x:Name="MainFlexLayout" BindableLayout.ItemsSource="{Binding Items}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="{Binding Content}"
-                                        FontSize="24"/>
+                        FontSize="24"/>
                         <Button Text="Button"
-                                    Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference Main}}"
-                                    CommandParameter="{Binding .}"
-                                    VerticalOptions="Center" HorizontalOptions="End"
-                                    IsEnabled="{Binding IsMine}"/>
+                        Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference Main}}"
+                        CommandParameter="{Binding .}"
+                        VerticalOptions="Center" HorizontalOptions="End"
+                        IsEnabled="{Binding IsMine}"/>
                     </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
